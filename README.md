@@ -25,6 +25,11 @@ une _commande dos_ et assurer d’avoir la commande _vagrant_ dans la variable _
     cd <CHEMIN>/vagrant-elk
     vagrant up
 
+## Arrêter la VM
+Sur le même principe que le point précédent, il suffit juste de taper ceci :
+
+	vagrant halt
+
 ## Connexxion SSH dans la VM
 
     cd <CHEMIN>/vagrant-elk
