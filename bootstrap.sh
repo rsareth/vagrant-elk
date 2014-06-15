@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Installation de certains packages forts utiles.
+apt-get install -y curl vim
+
 dpkg -l | grep apache2
 if ! [ $? -eq 0 ]
 then
