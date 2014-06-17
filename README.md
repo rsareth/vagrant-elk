@@ -30,7 +30,7 @@ Sur le même principe que le point précédent, il suffit juste de taper ceci :
 
 	vagrant halt
 
-## Connexxion SSH dans la VM
+## Connexion SSH dans la VM
 
     cd <CHEMIN>/vagrant-elk
     vagrant ssh
@@ -54,7 +54,8 @@ Pour prendre en compte les modifications :
 * connectez-vous en ssh (vagrant ssh)
 * saisissez ceci :
 
-	sudo /etc/init.d/logstash restart
+	cd /vagrant_data/scripts
+	sh logstash.sh start # pour démarrer
 
 ## Elasticsearch
 A REDIGER QUAND JE SERAI ARRIVE A CETTE ETAPE.
