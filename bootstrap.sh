@@ -1,12 +1,13 @@
 #!/bin/bash
 
+apt-get -y update
+
 # Installation de certains packages forts utiles.
 apt-get install -y curl vim
 
 dpkg -l | grep apache2
 if ! [ $? -eq 0 ]
 then
-    apt-get -y update
     apt-get -y install apache2
     /etc/init.d/apache2 start
     echo "Installation d'Apache faite ..."
@@ -15,9 +16,6 @@ fi
 dpkg -l | grep elasticsearch
 if ! [ $? -eq 0 ]
 then
-    #wget -O - http://packages.elasticsearch.org/GPG-KEY-elasticsearch | apt-key add -
-    #echo "deb http://packages.elasticsearch.org/elasticsearch/1.2/debian stable main" >> /etc/apt/sources.list
-    #apt-get -y update
     apt-get -y install openjdk-7-jre
 
     wget https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-1.2.1.deb
@@ -28,15 +26,15 @@ then
     echo "Installation d'Elasticsearch faite ..."
 fi
 
-dpkg -l | grep logstash
+test -L /opt/logstash
 if ! [ $? -eq 0 ]
 then
-    wget https://download.elasticsearch.org/logstash/logstash/packages/debian/logstash_1.4.1-1-bd507eb_all.deb
-    dpkg -i logstash_1.4.1-1-bd507eb_all.deb
-    cd /etc/logstash
-    ln -sf /vagrant_data/conf/logstash/logstash.conf /etc/logstash/conf.d/logstash.conf
-    update-rc.d logstash defaults
-    /etc/init.d/logstash start
+    cd /opt
+    wget https://download.elasticsearch.org/logstash/logstash/logstash-1.4.1.tar.gz
+    tar xzf logstash-1.4.1.tar.gz -C /opt/
+    ln -sf logstash-1.4.1 logstash
+    #cd /vagrant_data/scripts
+    #sh logstash.sh start
     echo "Installation de LogStash faite ..."
 fi
 
